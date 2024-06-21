@@ -31,26 +31,6 @@ pipeline {
             }
         }
 
-        stage('Verify App URL') {
-            steps {
-                script {
-                    echo 'Verifying Flask application URL...'
-
-                    // Replace with your Flask app URL and port
-                    def appUrl = 'http://localhost:5000/'
-
-                    // Use curl to make an HTTP request and capture the response code
-                    def responseCode = sh(returnStatus: true, script: "curl -s -o /dev/null -w '%{http_code}' ${appUrl}")
-
-                    if (responseCode == '200') {
-                        echo "Flask application is running fine. Response code: ${responseCode}"
-                    } else {
-                        error "Failed to verify Flask application URL. Response code: ${responseCode}"
-                    }
-                }
-            }
-        }
-
         stage('Build') {
             steps {
                 script {
@@ -69,6 +49,26 @@ pipeline {
             }
         }
     }
+
+    stage('Verify App URL') {
+            steps {
+                script {
+                    echo 'Verifying Flask application URL...'
+
+                    // Replace with your Flask app URL and port
+                    def appUrl = 'http://localhost:5000/'
+
+                    // Use curl to make an HTTP request and capture the response code
+                    def responseCode = sh(returnStatus: true, script: "curl -s -o /dev/null -w '%{http_code}' ${appUrl}")
+
+                    if (responseCode == '200') {
+                        echo "Flask application is running fine. Response code: ${responseCode}"
+                    } else {
+                        error "Failed to verify Flask application URL. Response code: ${responseCode}"
+                    }
+                }
+            }
+        }
 
     post {
         always {
