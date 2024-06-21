@@ -7,7 +7,7 @@ pipeline {
                 script {
                     echo 'Setting up Python environment...'
                     sh 'python3 -m venv venv'
-                    sh '. venv/bin/activate && pip install --upgrade pip'
+                    sh './venv/bin/pip install --upgrade pip'
                 }
             }
         }
@@ -16,8 +16,8 @@ pipeline {
             steps {
                 script {
                     echo 'Checking code indentation...'
-                    sh '. venv/bin/activate && pip install flake8'
-                    sh '. venv/bin/activate && flake8 app.py'
+                    sh './venv/bin/pip install flake8'
+                    sh './venv/bin/flake8 app.py'
                 }
             }
         }
@@ -26,8 +26,8 @@ pipeline {
             steps {
                 script {
                     echo 'Running tests...'
-                    sh '. venv/bin/activate && pip install pytest'
-                    sh '. venv/bin/activate && pytest --maxfail=1 --disable-warnings -q'
+                    sh './venv/bin/pip install pytest'
+                    sh './venv/bin/pytest --maxfail=1 --disable-warnings -q'
                 }
             }
         }
@@ -45,7 +45,7 @@ pipeline {
             steps {
                 script {
                     echo 'Running the application...'
-                    sh '. venv/bin/activate && python app.py'
+                    sh './venv/bin/python app.py'
                 }
             }
         }
