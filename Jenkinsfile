@@ -48,9 +48,8 @@ pipeline {
                 }
             }
         }
-    }
 
-    stage('Verify App URL') {
+        stage('Verify App URL') {
             steps {
                 script {
                     echo 'Verifying Flask application URL...'
@@ -69,6 +68,7 @@ pipeline {
                 }
             }
         }
+    }
 
     post {
         always {
