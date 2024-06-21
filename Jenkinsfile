@@ -55,7 +55,7 @@ pipeline {
                     echo 'Verifying Flask application URL...'
 
                     // Replace with your Flask app URL and port
-                    def appUrl = 'http://localhost:5000/'
+                    def appUrl = 'http://172.17.0.2:5000/'
 
                     // Use curl to make an HTTP request and capture the response code
                     def responseCode = sh(returnStatus: true, script: "curl -s -o /dev/null -w '%{http_code}' ${appUrl}")
